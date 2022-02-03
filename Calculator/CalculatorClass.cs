@@ -45,5 +45,10 @@ namespace Calculator
             return Accumulator;
         }
 
+        public double Divide(double dividend, double divisor)
+        {
+            return dividend / divisor;
+        }
+
     }
 }

@@ -61,7 +61,15 @@ namespace Calculator
                 Console.WriteLine($"Power funktionen gav det forkerte resultat {result}");
             }
 
-            
+            result = calc.Divide(4, 2);
+            if (result == 2)
+            {
+                Console.WriteLine($"Resultatet af Divide funktionen er som forventet {result}");
+            }
+            else if (result != 2)
+            {
+                Console.WriteLine($"Divide funktionen gav det forkerte resultat {result}");
+            }
 
 
 
