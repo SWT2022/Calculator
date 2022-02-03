@@ -34,5 +34,10 @@ namespace Calculator
             return Math.Pow(x,exp);
         }
 
+        public double Divide(double dividend, double divisor)
+        {
+            return dividend / divisor;
+        }
+
     }
 }
