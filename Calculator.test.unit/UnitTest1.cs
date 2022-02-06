@@ -1,3 +1,4 @@
+using System;
 using NUnit.Framework;
 
 namespace Calculator.test.unit
@@ -49,6 +50,103 @@ namespace Calculator.test.unit
         {
             Assert.That(uut.Multiply(a,b), Is.EqualTo(r));
         }
+
+
+        [TestCase(6, 5, 1.2)]
+        [TestCase(-3, 3, -1)]
+        [TestCase(0, 123, 0)]
+
+        public void DevideTest(double a, double b, double r)
+        {
+            Assert.That(uut.Divide(a, b), Is.EqualTo(r));
+        }
+
+
+        [Test]
+
+        public void AccumulatorTest_Add()
+        {
+            //Arrange
+
+            //Act
+            uut.Add(23, 4);
+
+            //Assert
+            Assert.That(uut.Accumulator, Is.EqualTo(27));
+        }
+
+        [Test]
+
+        public void AccumulatorTest_Subtract()
+        {
+            //Arrange
+
+            //Act
+            uut.Subtract(23, 4);
+
+
+            //Assert
+            Assert.That(uut.Accumulator, Is.EqualTo(19));
+        }
+
+
+        [Test]
+
+        public void AccumulatorTest_Add_Chained()
+        {
+            //Arrange
+
+            //Act
+            uut.Add(23);
+            uut.Add(23);
+            uut.Add(23);
+
+            uut.Divide(3);
+
+
+
+            //Assert
+            Assert.That(uut.Accumulator, Is.EqualTo(23));
+        }
+
+        [Test]
+
+        public void AccumulatorTest_Clear()
+        {
+            //Arrange
+
+            //Act
+            uut.Add(23);
+            uut.Add(23);
+            uut.Add(23);
+            uut.Clear();
+
+            //Assert
+            Assert.That(uut.Accumulator, Is.EqualTo(0));
+        }
+
+        [Test]
+
+        public void Divide_Zero_Throws()
+        {
+            //Arrange
+
+            //Act
+            
+
+            //Assert + Act
+            Assert.That(() => uut.Divide(0), Throws.TypeOf<ArgumentOutOfRangeException>());
+        }
+
+
+
+
+
+
+
+
+
+
 
 
 
