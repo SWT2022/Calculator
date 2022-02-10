@@ -13,7 +13,7 @@ namespace Calculator
 
         }
 
-        public double Accumulator { get; private set; } = 0;
+        public double Accumulator { get; set; } = 0;
 
         public void Clear()
         {

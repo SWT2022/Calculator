@@ -56,7 +56,7 @@ namespace Calculator.test.unit
         [TestCase(-3, 3, -1)]
         [TestCase(0, 123, 0)]
 
-        public void DevideTest(double a, double b, double r)
+        public void DivideTest(double a, double b, double r)
         {
             Assert.That(uut.Divide(a, b), Is.EqualTo(r));
         }
@@ -131,7 +131,7 @@ namespace Calculator.test.unit
             //Arrange
 
             //Act
-            uut.Subtract(a);
+            uut.Accumulator = a;
             uut.Subtract(a);
             uut.Subtract(a);
 
@@ -149,7 +149,7 @@ namespace Calculator.test.unit
             //Arrange
 
             //Act
-            uut.Multiply(a);
+            uut.Accumulator = a;
             uut.Multiply(a);
             uut.Multiply(a);
 
@@ -167,7 +167,7 @@ namespace Calculator.test.unit
             //Arrange
 
             //Act
-            uut.Divide(a);
+            uut.Accumulator = a;
             uut.Divide(a);
             uut.Divide(a);
 
@@ -177,16 +177,18 @@ namespace Calculator.test.unit
         }
 
 
-        [Test]
+        [TestCase(23)]
+        [TestCase(-3)]
+        [TestCase(0)]
 
-        public void AccumulatorTest_Clear()
+        public void AccumulatorTest_Clear(double a)
         {
             //Arrange
 
             //Act
-            uut.Add(23);
-            uut.Add(23);
-            uut.Add(23);
+            uut.Add(a);
+            uut.Add(a);
+            uut.Add(a);
             uut.Clear();
 
             //Assert
