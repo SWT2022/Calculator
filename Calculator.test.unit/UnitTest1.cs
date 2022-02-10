@@ -14,31 +14,31 @@ namespace Calculator.test.unit
             uut = new CalculatorClass();
         }
 
-        [Test]
-        public void Add_4_5_ResultIs9()
+        [TestCase(12, 34, 46)]
+        [TestCase(-13, 34, 21)]
+        [TestCase(0, 123, 123)]
+        [TestCase(0, 0, 0)]
+        public void Add_Numbers(double a, double b, double r)
         {
             //Arrange
             //var uut = new CalculatorClass();
 
-            //Act
-            uut.Add(4, 5);
-            //Assert
-            Assert.That(uut.Add(4, 5), Is.EqualTo(9));
+           
+           
+            //Assert + Act
+            Assert.That(uut.Add(a,b), Is.EqualTo(r));
 
         }
 
-        [Test]
 
-        public void Add_Negative_Numbers()
+
+        [TestCase(12, 34, -22)]
+        [TestCase(-13, 34, -47)]
+        [TestCase(0, 123, -123)]
+        [TestCase(0, 0, 0)]
+        public void Subtract_20_5_ResultIs15(double a, double b, double r)
         {
-            Assert.That(uut.Add(-6, -3), Is.EqualTo(-9));
-        }
-
-
-        [Test]
-        public void Subtract_20_5_ResultIs15()
-        {
-            Assert.That(uut.Subtract(20, 5), Is.EqualTo(15));
+            Assert.That(uut.Subtract(a, b), Is.EqualTo(r));
         }
 
         [TestCase(12, 34, 408)]
@@ -61,6 +61,19 @@ namespace Calculator.test.unit
             Assert.That(uut.Divide(a, b), Is.EqualTo(r));
         }
 
+        [Test]
+
+        public void Divide_Zero_Throws()
+        {
+            //Arrange
+
+            //Act
+
+
+            //Assert + Act
+            Assert.That(() => uut.Divide(0), Throws.TypeOf<ArgumentOutOfRangeException>());
+        }
+
 
         [Test]
 
@@ -74,6 +87,7 @@ namespace Calculator.test.unit
             //Assert
             Assert.That(uut.Accumulator, Is.EqualTo(27));
         }
+
 
         [Test]
 
@@ -90,24 +104,78 @@ namespace Calculator.test.unit
         }
 
 
-        [Test]
+        [TestCase(23, 69)]
+        [TestCase(-3, -9)]
+        [TestCase(5, 15)]
 
-        public void AccumulatorTest_Add_Chained()
+        public void AccumulatorTest_Add_Chained(double a, double r)
         {
             //Arrange
 
             //Act
-            uut.Add(23);
-            uut.Add(23);
-            uut.Add(23);
-
-            uut.Divide(3);
-
+            uut.Add(a);
+            uut.Add(a);
+            uut.Add(a);
 
 
             //Assert
-            Assert.That(uut.Accumulator, Is.EqualTo(23));
+            Assert.That(uut.Accumulator, Is.EqualTo(r));
         }
+
+        [TestCase(23, -23)]
+        [TestCase(-3, 3)]
+        [TestCase(5, -5)]
+
+        public void AccumulatorTest_Substract_Chained(double a, double r)
+        {
+            //Arrange
+
+            //Act
+            uut.Subtract(a);
+            uut.Subtract(a);
+            uut.Subtract(a);
+
+
+            //Assert
+            Assert.That(uut.Accumulator, Is.EqualTo(r));
+        }
+
+        [TestCase(23, 12167)]
+        [TestCase(-3, -27)]
+        [TestCase(5, 125)]
+
+        public void AccumulatorTest_Multiply_Chained(double a, double r)
+        {
+            //Arrange
+
+            //Act
+            uut.Multiply(a);
+            uut.Multiply(a);
+            uut.Multiply(a);
+
+
+            //Assert
+            Assert.That(uut.Accumulator, Is.EqualTo(r));
+        }
+
+        [TestCase(2, 0.5)]
+        [TestCase(4, 0.25)]
+        [TestCase(5, 0.2)]
+
+        public void AccumulatorTest_Divide_Chained(double a, double r)
+        {
+            //Arrange
+
+            //Act
+            uut.Divide(a);
+            uut.Divide(a);
+            uut.Divide(a);
+
+
+            //Assert
+            Assert.That(uut.Accumulator, Is.EqualTo(r));
+        }
+
 
         [Test]
 
@@ -125,18 +193,7 @@ namespace Calculator.test.unit
             Assert.That(uut.Accumulator, Is.EqualTo(0));
         }
 
-        [Test]
 
-        public void Divide_Zero_Throws()
-        {
-            //Arrange
-
-            //Act
-            
-
-            //Assert + Act
-            Assert.That(() => uut.Divide(0), Throws.TypeOf<ArgumentOutOfRangeException>());
-        }
 
 
 
