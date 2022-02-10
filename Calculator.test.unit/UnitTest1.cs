@@ -194,6 +194,14 @@ namespace Calculator.test.unit
         }
 
 
+        [TestCase(2, 3, 8)]
+        [TestCase(5, 5, 3125)]
+        [TestCase(7, 3, 343)]
+
+        public void Power(double a, double b, double r)
+        {
+            Assert.That(uut.Power(a, b), Is.EqualTo(r));
+        }
 
 
 
